@@ -12,6 +12,8 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -90,6 +92,21 @@ public class DownloadFragment extends Fragment implements RepoListener,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_downloader, container, false);
 		ListView lv = (ListView) v.findViewById(R.id.listModules);
+		final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v
+				.findViewById(R.id.swiperefreshlayout);
+		refreshLayout
+				.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+					@Override
+					public void onRefresh() {
+						mRepoLoader.triggerReload(true);
+						// SIMULATE WAIT TIME
+						new Handler().postDelayed(new Runnable() {
+							public void run() {
+								refreshLayout.setRefreshing(false);
+							}
+						}, 1500);
+					}
+				});
 
 		mRepoLoader.addListener(this, true);
 		mModuleUtil.addListener(this);
@@ -187,9 +204,6 @@ public class DownloadFragment extends Fragment implements RepoListener,
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.menu_refresh:
-				mRepoLoader.triggerReload(true);
-				return true;
 			case R.id.menu_sort:
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						getActivity());

@@ -6,13 +6,20 @@
     android:orientation="vertical"
     tools:context=".DownloadFragment">
 
-    <com.emilsjolander.components.stickylistheaders.StickyListHeadersListView
-        android:id="@+id/listModules"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="6dip"
-        android:padding="8dip"></com.emilsjolander.components.stickylistheaders.StickyListHeadersListView>
+        android:layout_height="match_parent">
+
+        <com.emilsjolander.components.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/listModules"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="6dip"
+            android:padding="8dip" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>
