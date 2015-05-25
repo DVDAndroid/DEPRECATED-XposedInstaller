@@ -29,6 +29,7 @@ public final class ModuleUtil {
 	// xposedminversion below this
 	private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR
 			+ "conf/modules.list";
+	private static final String PLAY_STORE_PACKAGE = "com.android.vending";
 	public static int MIN_MODULE_VERSION = 2; // reject modules with
 	private static ModuleUtil mInstance = null;
 	private final XposedApp mApp;
@@ -221,6 +222,8 @@ public final class ModuleUtil {
 			}
 
 			PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
+			PrintWriter enabledModulesList = new PrintWriter(
+					XposedApp.ENABLED_MODULES_LIST_FILE);
 			List<InstalledModule> enabledModules = getEnabledModules();
 			for (InstalledModule module : enabledModules) {
 				if (module.minVersion > installedXposedVersion
@@ -228,10 +231,17 @@ public final class ModuleUtil {
 					continue;
 
 				modulesList.println(module.app.sourceDir);
+				String installer = mPm
+						.getInstallerPackageName(module.app.packageName);
+				if (!PLAY_STORE_PACKAGE.equals(installer))
+					enabledModulesList.println(module.app.packageName);
 			}
 			modulesList.close();
+			enabledModulesList.close();
 
 			FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
+			FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE,
+					00664, -1, -1);
 
 			if (showToast)
 				Toast.makeText(mApp, R.string.xposed_module_list_updated,

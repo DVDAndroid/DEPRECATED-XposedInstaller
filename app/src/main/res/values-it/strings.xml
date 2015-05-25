@@ -193,4 +193,9 @@
     <string name="repo_download_failed">Download di %1$s fallito: %2$s</string>
     <string name="repo_load_failed">Impossibile caricare repository da %1$s:\n%2$s</string>
 
+    <string name="export_modules">Esporta lista moduli abilitati</string>
+    <string name="import_modules">Importa lista moduli abilitati</string>
+    <string name="no_backup_found">Nessun backup trovato!</string>
+    <string name="no_enabled_modules">Non c\'è nessun modulo attivato!</string>
+
 </resources>

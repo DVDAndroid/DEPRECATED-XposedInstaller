@@ -26,6 +26,8 @@ public class XposedApp extends Application implements
 
 	@SuppressLint("SdCardPath")
 	public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
+	public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR
+			+ "conf/enabled_modules.list";
 
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;

@@ -62,9 +62,11 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity
 			mPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager()));
 
 			// Updates available => start on the versions page
+			Boolean directDownload = getIntent().getBooleanExtra(
+					"direct_download", false);
 			if (mInstalledModule != null
 					&& mInstalledModule.isUpdate(sRepoLoader
-							.getLatestVersion(mModule)))
+							.getLatestVersion(mModule)) || directDownload)
 				mPager.setCurrentItem(DOWNLOAD_VERSIONS);
 
 		} else {
