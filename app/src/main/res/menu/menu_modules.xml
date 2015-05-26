@@ -2,12 +2,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/export_modules"
+        android:id="@+id/export"
         android:showAsAction="never"
-        android:title="@string/export_modules" />
+        android:title="@string/export_">
+        <menu>
+            <item
+                android:id="@+id/export_enabled_modules"
+                android:showAsAction="never"
+                android:title="@string/export_enabled_modules"/>
+            <item
+                android:id="@+id/export_installed_modules"
+                android:showAsAction="never"
+                android:title="@string/export_installed_modules"/>
+        </menu>
+    </item>
+
     <item
-        android:id="@+id/import_modules"
+        android:id="@+id/import_"
         android:showAsAction="never"
-        android:title="@string/import_modules" />
+        android:title="@string/import_">
+        <menu>
+            <item
+                android:id="@+id/import_enabled_modules"
+                android:showAsAction="never"
+                android:title="@string/import_enabled_modules"/>
+            <item
+                android:id="@+id/import_installed_modules"
+                android:showAsAction="never"
+                android:title="@string/import_installed_modules"/>
+        </menu>
+    </item>
 
 </menu>

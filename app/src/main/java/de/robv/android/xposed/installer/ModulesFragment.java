@@ -33,16 +33,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.text.Collator;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
@@ -192,32 +198,36 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String backupPath = Environment.getExternalStorageDirectory()
 				+ "/XposedInstaller";
-		File targetFile = new File(backupPath, "exported_modules.list");
+		File enabledModulesPath = new File(backupPath, "enabled_modules.list");
+		File installedModulesPath = new File(backupPath,
+				"installed_modules.list");
 
 		switch (item.getItemId()) {
-			case R.id.export_modules:
+			case R.id.export_enabled_modules:
 				if (!Environment.getExternalStorageState().equals(
 						Environment.MEDIA_MOUNTED)) {
 					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
 							Toast.LENGTH_LONG).show();
 					return false;
 				}
+
+				if (ModuleUtil.getInstance().getEnabledModules().isEmpty()) {
+					Toast.makeText(getActivity(),
+							getString(R.string.no_enabled_modules),
+							Toast.LENGTH_SHORT).show();
+					return false;
+				}
+
 				File targetDir = new File(backupPath);
 				File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
 
 				try {
-					if (ModuleUtil.getInstance().getEnabledModules().isEmpty()) {
-						Toast.makeText(getActivity(),
-								getString(R.string.no_enabled_modules),
-								Toast.LENGTH_SHORT).show();
-						return false;
-					}
-
 					if (!targetDir.exists())
 						targetDir.mkdir();
 
 					FileInputStream in = new FileInputStream(listModules);
-					FileOutputStream out = new FileOutputStream(targetFile);
+					FileOutputStream out = new FileOutputStream(
+							enabledModulesPath);
 
 					byte[] buffer = new byte[1024];
 					int len;
@@ -235,25 +245,84 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 					return false;
 				}
 
-				Toast.makeText(getActivity(), targetFile.toString(),
+				Toast.makeText(getActivity(), enabledModulesPath.toString(),
 						Toast.LENGTH_LONG).show();
 				return true;
-			case R.id.import_modules:
+			case R.id.export_installed_modules:
 				if (!Environment.getExternalStorageState().equals(
 						Environment.MEDIA_MOUNTED)) {
 					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
 							Toast.LENGTH_LONG).show();
 					return false;
 				}
-				if (!targetFile.exists()) {
+				Map<String, InstalledModule> installedModules = ModuleUtil
+						.getInstance().getModules();
+
+				if (installedModules.isEmpty()) {
 					Toast.makeText(getActivity(),
-							getString(R.string.no_backup_found),
-							Toast.LENGTH_LONG).show();
+							getString(R.string.no_installed_modules),
+							Toast.LENGTH_SHORT).show();
 					return false;
 				}
 
 				try {
-					InputStream ips = new FileInputStream(targetFile);
+					FileWriter fw = new FileWriter(installedModulesPath);
+					BufferedWriter bw = new BufferedWriter(fw);
+					PrintWriter fileOut = new PrintWriter(bw);
+
+					Set keys = installedModules.keySet();
+					for (Object key1 : keys) {
+						String packageName = (String) key1;
+						fileOut.println(packageName);
+					}
+
+					fileOut.close();
+				} catch (IOException e) {
+					Toast.makeText(
+							getActivity(),
+							getResources().getString(R.string.logs_save_failed)
+									+ "\n" + e.getMessage(), Toast.LENGTH_LONG)
+							.show();
+					return false;
+				}
+				return true;
+			case R.id.import_installed_modules:
+			case R.id.import_enabled_modules:
+				if (!Environment.getExternalStorageState().equals(
+						Environment.MEDIA_MOUNTED)) {
+					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
+							Toast.LENGTH_LONG).show();
+					return false;
+				}
+				InputStream ips = null;
+				if (item.getItemId() == R.id.import_installed_modules) {
+					if (!installedModulesPath.exists()) {
+						Toast.makeText(getActivity(),
+								getString(R.string.no_backup_found),
+								Toast.LENGTH_LONG).show();
+						return false;
+					}
+					try {
+						ips = new FileInputStream(installedModulesPath);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+				} else {
+					if (!enabledModulesPath.exists()) {
+						Toast.makeText(getActivity(),
+								getString(R.string.no_backup_found),
+								Toast.LENGTH_LONG).show();
+						return false;
+					}
+					try {
+						ips = new FileInputStream(enabledModulesPath);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+				}
+
+				try {
+					assert ips != null;
 					InputStreamReader ipsr = new InputStreamReader(ips);
 					BufferedReader br = new BufferedReader(ipsr);
 					String line;

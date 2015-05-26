@@ -202,9 +202,14 @@
     <string name="repo_download_failed">Downloading %1$s failed: %2$s</string>
     <string name="repo_load_failed">Cannot load repository from %1$s:\n%2$s</string>
 
-    <string name="export_modules">Export enabled modules list</string>
-    <string name="import_modules">Import enabled modules list</string>
+    <string name="export">Export…</string>
+    <string name="import_">Import…</string>
+    <string name="export_enabled_modules">Export enabled modules list</string>
+    <string name="import_enabled_modules">Import enabled modules list</string>
+    <string name="export_installed_modules">Export installed modules list</string>
+    <string name="import_installed_modules">Import installed modules list</string>
     <string name="no_backup_found">No backup found!</string>
-    <string name="no_enabled_modules">There isn\'t any enabled modul!e</string>
+    <string name="no_installed_modules">There isn\'t any installed module!</string>
+    <string name="no_enabled_modules">There isn\'t any enabled module!</string>
 
 </resources>

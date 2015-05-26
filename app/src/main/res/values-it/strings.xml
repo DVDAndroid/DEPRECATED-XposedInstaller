@@ -193,9 +193,14 @@
     <string name="repo_download_failed">Download di %1$s fallito: %2$s</string>
     <string name="repo_load_failed">Impossibile caricare repository da %1$s:\n%2$s</string>
 
-    <string name="export_modules">Esporta lista moduli abilitati</string>
-    <string name="import_modules">Importa lista moduli abilitati</string>
+    <string name="export_">Esporta…</string>
+    <string name="import_">Importa…</string>
+    <string name="export_enabled_modules">Esporta lista moduli attivati</string>
+    <string name="import_enabled_modules">Importa lista moduli attivati</string>
+    <string name="export_installed_modules">Esporta lista moduli installati</string>
+    <string name="import_installed_modules">Importa lista moduli installati</string>
     <string name="no_backup_found">Nessun backup trovato!</string>
-    <string name="no_enabled_modules">Non c\'è nessun modulo attivato!</string>
+    <string name="no_installed_modules">Non c\'è nessun modulo installato!</string>
+    <string name="no_enabled_modules">Non c\'è nessun modulo abilitato!</string>
 
 </resources>
