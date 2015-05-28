@@ -203,4 +203,10 @@
     <string name="no_installed_modules">Non c\'è nessun modulo installato!</string>
     <string name="no_enabled_modules">Non c\'è nessun modulo abilitato!</string>
 
+    <string name="warning_installed_on_external_storage">Questo modulo non può essere caricato perché è installato nella memoria SD, per favore spostalo nella memoria interna</string>
+    <string name="warning_forward_locked">Questo modulo non può essere caricato perché è forward-locked, perfavore contatta lo sviluppatore del modulo.</string>
+    <string name="download_disabled">Downloads disabilitati</string>
+    <string name="download_disabled_description">Il download dei moduli è disabilitato. Per favore, abilita i download nelle impostazioni.</string>
+    <string name="download_open_settings">Apri impostazioni</string>
+
 </resources>

@@ -212,4 +212,10 @@
     <string name="no_installed_modules">There isn\'t any installed module!</string>
     <string name="no_enabled_modules">There isn\'t any enabled module!</string>
 
+    <string name="warning_installed_on_external_storage">This module cannot be loaded because it\'s installed on the SD card, please move it to internal storage.</string>
+    <string name="warning_forward_locked">This module cannot be loaded because it\'s is forward-locked, please contact the module\'s developer.</string>
+    <string name="download_disabled">Disabled downloads</string>
+    <string name="download_disabled_description">Downloading modules is disabled. Please enable downloads in Settings.</string>
+    <string name="download_open_settings">Open settings</string>
+
 </resources>

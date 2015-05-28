@@ -277,6 +277,7 @@ public final class ModuleUtil {
 	}
 
 	public class InstalledModule {
+		private static final int FLAG_FORWARD_LOCK = 1 << 29;
 		public final String packageName;
 		public final boolean isFramework;
 		public final String versionName;
@@ -285,7 +286,6 @@ public final class ModuleUtil {
 		public ApplicationInfo app;
 		private String appName; // loaded lazyily
 		private String description; // loaded lazyily
-
 		private Drawable.ConstantState iconCache = null;
 
 		private InstalledModule(PackageInfo pkg, boolean isFramework) {
@@ -349,6 +349,14 @@ public final class ModuleUtil {
 			Drawable result = app.loadIcon(mPm);
 			iconCache = result.getConstantState();
 			return result;
+		}
+
+		public boolean isInstalledOnExternalStorage() {
+			return (app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0;
+		}
+
+		public boolean isForwardLocked() {
+			return (app.flags & FLAG_FORWARD_LOCK) != 0;
 		}
 
 		@Override
