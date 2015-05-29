@@ -47,8 +47,8 @@ public class DownloadDetailsFragment extends Fragment {
 				.findViewById(R.id.download_description);
 		if (module.description != null) {
 			if (module.descriptionIsHtml) {
-				description.setText(RepoParser
-						.parseSimpleHtml(module.description));
+				description.setText(RepoParser.parseSimpleHtml(getActivity(),
+						module.description, description));
 				description.setMovementMethod(LinkMovementMethod.getInstance());
 			} else {
 				description.setText(module.description);
