@@ -10,7 +10,7 @@
             android:entryValues="@array/install_mode_values"
             android:key="install_mode"
             android:summary="%s"
-            android:title="@string/settings_install_mode" />
+            android:title="@string/settings_install_mode"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -20,14 +20,14 @@
             android:defaultValue="true"
             android:key="enable_downloads"
             android:summary="@string/settings_enable_downloads_summary"
-            android:title="@string/settings_enable_downloads" />
+            android:title="@string/settings_enable_downloads"/>
         <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
             android:defaultValue="stable"
             android:entries="@array/release_type_texts"
             android:entryValues="@array/release_type_values"
             android:key="release_type_global"
             android:summary="%s"
-            android:title="@string/settings_release_type" />
+            android:title="@string/settings_release_type"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -39,7 +39,13 @@
             android:entryValues="@array/theme_values"
             android:key="theme"
             android:summary="%s"
-            android:title="@string/settings_theme" />
+            android:title="@string/settings_theme"/>
+
+        <CheckBoxPreference
+            android:key="heads_up"
+            android:summary="@string/enable_heads_up_summary"
+            android:title="@string/enable_heads_up"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -50,7 +56,7 @@
             android:key="disable_resources"
             android:persistent="false"
             android:summary="@string/settings_disable_resources_summary"
-            android:title="@string/settings_disable_resources" />
+            android:title="@string/settings_disable_resources"/>
         <!--
                 <CheckBoxPreference
                     android:defaultValue="false"

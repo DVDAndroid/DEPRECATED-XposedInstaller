@@ -208,5 +208,7 @@
     <string name="download_disabled">Downloads disabilitati</string>
     <string name="download_disabled_description">Il download dei moduli è disabilitato. Per favore, abilita i download nelle impostazioni.</string>
     <string name="download_open_settings">Apri impostazioni</string>
+    <string name="enable_heads_up">Abilita le notifiche Heads-Up</string>
+    <string name="enable_heads_up_summary">Questa opzione abilita la notifica heads up ad ogni nuovo/aggiornato modulo</string>
 
 </resources>

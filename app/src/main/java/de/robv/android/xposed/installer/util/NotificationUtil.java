@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -27,6 +28,7 @@ public final class NotificationUtil {
 	private static final int PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT = 4;
 	private static Context sContext = null;
 	private static NotificationManager sNotificationManager;
+	private static SharedPreferences prefs;
 
 	public static void init() {
 		if (sContext != null)
@@ -34,6 +36,7 @@ public final class NotificationUtil {
 					"NotificationUtil has already been initialized");
 
 		sContext = XposedApp.getInstance();
+		prefs = XposedApp.getPreferences();
 		sNotificationManager = (NotificationManager) sContext
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 	}
@@ -61,7 +64,11 @@ public final class NotificationUtil {
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(
 				sContext).setContentTitle(title).setContentText(appName)
 				.setTicker(title).setContentIntent(pModulesTab)
-				.setAutoCancel(true).setSmallIcon(R.drawable.ic_notification);
+				.setVibrate(new long[] { 0 }).setAutoCancel(true)
+				.setSmallIcon(R.drawable.ic_notification);
+
+		if (prefs.getBoolean("heads_up", false))
+			builder.setPriority(2);
 
 		if (Build.VERSION.SDK_INT >= 16) {
 			Intent iActivateAndReboot = new Intent(sContext,
@@ -107,7 +114,11 @@ public final class NotificationUtil {
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(
 				sContext).setContentTitle(title).setContentText(message)
 				.setTicker(title).setContentIntent(pInstallTab)
-				.setAutoCancel(true).setSmallIcon(R.drawable.ic_notification);
+				.setVibrate(new long[] { 0 }).setAutoCancel(true)
+				.setSmallIcon(R.drawable.ic_notification);
+
+		if (prefs.getBoolean("heads_up", false))
+			builder.setPriority(2);
 
 		if (Build.VERSION.SDK_INT >= 16) {
 			Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);

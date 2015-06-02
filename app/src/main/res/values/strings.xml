@@ -217,5 +217,7 @@
     <string name="download_disabled">Disabled downloads</string>
     <string name="download_disabled_description">Downloading modules is disabled. Please enable downloads in Settings.</string>
     <string name="download_open_settings">Open settings</string>
+    <string name="enable_heads_up">Enable Heads-Up notification</string>
+    <string name="enable_heads_up_summary">This option enables heads up notification on new/updated module</string>
 
 </resources>
