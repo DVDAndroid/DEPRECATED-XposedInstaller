@@ -25,6 +25,12 @@ public class DownloadDetailsFragment extends Fragment {
 	}
 
 	@Override
+	public void onResume() {
+		XposedApp.getAndSetColor(getActivity());
+		super.onResume();
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		final Module module = mActivity.getModule();

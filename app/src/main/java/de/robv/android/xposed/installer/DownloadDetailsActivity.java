@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -52,7 +53,12 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity
 		if (mModule != null) {
 			setContentView(R.layout.activity_download_details);
 
-			((TextView) findViewById(android.R.id.title)).setText(mModule.name);
+			TextView title = (TextView) findViewById(android.R.id.title);
+			title.setText(mModule.name);
+			title.setBackgroundColor(XposedApp.getColor(this));
+
+			PagerTabStrip tabStrip = (PagerTabStrip) findViewById(R.id.pagerTabStrip);
+			tabStrip.setBackgroundColor(XposedApp.getColor(this));
 
 			mPageTitles = new String[] {
 					getString(R.string.download_details_page_description),

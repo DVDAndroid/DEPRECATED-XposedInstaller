@@ -25,6 +25,12 @@ public class SupportFragment extends Fragment {
 	}
 
 	@Override
+	public void onResume() {
+		XposedApp.getAndSetColor(getActivity());
+		super.onResume();
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		ViewGroup vg = (ViewGroup) inflater.inflate(R.layout.tab_support,

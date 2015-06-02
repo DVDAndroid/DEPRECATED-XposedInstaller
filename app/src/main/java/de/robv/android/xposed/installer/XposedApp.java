@@ -7,6 +7,9 @@ import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
@@ -56,6 +59,39 @@ public class XposedApp extends Application implements
 
 	public static SharedPreferences getPreferences() {
 		return mInstance.mPref;
+	}
+
+	public static void getAndSetColor(Activity activity) {
+		setColors(activity, getColor(activity));
+	}
+
+	public static int getColor(Activity activity) {
+		SharedPreferences prefs = activity.getSharedPreferences(
+				activity.getPackageName() + "_preferences", MODE_PRIVATE);
+		int defaultColor = activity.getResources().getColor(
+				R.color.actionBar_background);
+
+		return prefs.getInt("colors", defaultColor);
+	}
+
+	@SuppressWarnings("all")
+	private static void setColors(Activity activity, Object value) {
+		int color = (int) value;
+		activity.getActionBar().setBackgroundDrawable(new ColorDrawable(color));
+		if (Build.VERSION.SDK_INT >= 21) {
+			activity.getWindow().setStatusBarColor(darkenColor(color, 0.85f));
+		}
+	}
+
+	/**
+	 * @author PeterCxy https://github.com/PeterCxy/Lolistat/blob/aide/app/src/
+	 *         main/java/info/papdt/lolistat/support/Utility.java
+	 */
+	private static int darkenColor(int color, float factor) {
+		float[] hsv = new float[3];
+		Color.colorToHSV(color, hsv);
+		hsv[2] *= factor;
+		return Color.HSVToColor(hsv);
 	}
 
 	public void onCreate() {

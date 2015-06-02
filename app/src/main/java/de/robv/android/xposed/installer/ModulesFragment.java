@@ -143,6 +143,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	@Override
 	public void onResume() {
 		super.onResume();
+		XposedApp.getAndSetColor(getActivity());
 		NotificationUtil.cancelAll();
 	}
 

@@ -78,6 +78,12 @@ public class DownloadFragment extends Fragment implements RepoListener,
 		setHasOptionsMenu(true);
 	}
 
+	@Override
+	public void onResume() {
+		XposedApp.getAndSetColor(getActivity());
+		super.onResume();
+	}
+
 	private void showDisabledDownloadsDialog() {
 		AlertDialog.Builder disabledDownloads = new AlertDialog.Builder(
 				getActivity());

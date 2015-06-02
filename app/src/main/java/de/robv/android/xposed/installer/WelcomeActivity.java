@@ -70,6 +70,12 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		mRepoLoader.addListener(this, false);
 	}
 
+	@Override
+	protected void onResume() {
+		XposedApp.getAndSetColor(this);
+		super.onResume();
+	}
+
 	private void notifyDataSetChanged() {
 		runOnUiThread(new Runnable() {
 			@Override

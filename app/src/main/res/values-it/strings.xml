@@ -210,5 +210,16 @@
     <string name="download_open_settings">Apri impostazioni</string>
     <string name="enable_heads_up">Abilita le notifiche Heads-Up</string>
     <string name="enable_heads_up_summary">Questa opzione abilita la notifica heads up ad ogni nuovo/aggiornato modulo</string>
+    <string name="choose_color">Scegli un colore…</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Supporto per i moduli</string>
+    <string name="support_modules_description">Click lungo su qualsiasi modulo nella lista dei moduli e seleziona \"%1$s\".</string>
+    <string name="support_framework_label">Framework/Installer supporto</string>
+    <string name="support_faq_label">FAQ/Bug conosciuti</string>
+    <string name="support_donate_label">Dona</string>
+    <string name="support_donate_description">Se ti piacerebbe dire grazie per Xposed, puoi donare a rovo89 qui:</string>
+    <string name="tabSupport">Supporto</string>
+    <string name="tabSupportDescription">Trova aiuto ai problemi legati a Xposed. Puoi anche donare per dire grazie per Xposed.</string>
 
 </resources>

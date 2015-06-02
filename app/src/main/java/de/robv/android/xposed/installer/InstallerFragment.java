@@ -353,6 +353,7 @@ public class InstallerFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		XposedApp.getAndSetColor(getActivity());
 		btnInstallMode.setText(getInstallModeText());
 		NotificationUtil.cancel(NotificationUtil.NOTIFICATION_MODULES_UPDATED);
 		mHadSegmentationFault = false;

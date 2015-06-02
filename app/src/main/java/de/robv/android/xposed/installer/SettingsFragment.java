@@ -14,6 +14,8 @@ import java.io.IOException;
 
 import de.robv.android.xposed.installer.util.RepoLoader;
 
+import it.gmariotti.android.example.colorpicker.calendarstock.ColorPickerPreference;
+
 public class SettingsFragment extends PreferenceFragment {
 	private static final File mDisableResourcesFlag = new File(
 			XposedApp.BASE_DIR + "conf/disable_resources");
@@ -25,6 +27,8 @@ public class SettingsFragment extends PreferenceFragment {
 		if (activity instanceof XposedDropdownNavActivity)
 			((XposedDropdownNavActivity) activity)
 					.setNavItem(XposedDropdownNavActivity.TAB_SETTINGS);
+
+		XposedApp.getAndSetColor(activity);
 	}
 
 	@Override
@@ -101,5 +105,18 @@ public class SettingsFragment extends PreferenceFragment {
 						return true;
 					}
 				});
+
+		ColorPickerPreference colorPickerPreference = (ColorPickerPreference) findPreference("colors");
+		colorPickerPreference
+				.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+					@Override
+					public boolean onPreferenceChange(Preference preference,
+							Object newValue) {
+						XposedApp.getAndSetColor(getActivity());
+						getActivity().recreate();
+						return true;
+					}
+				});
+
 	}
 }
