@@ -145,7 +145,7 @@ public class ColorPickerPreference extends Preference {
 
 		ColorPickerDialog colorcalendar = (ColorPickerDialog) ColorPickerDialog
 				.newInstance(
-						R.string.color_picker_default_title,
+						R.string.choose_color,
 						mColorChoices,
 						getValue(),
 						mNumColumns,
