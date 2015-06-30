@@ -112,8 +112,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion();
 
-		if (XposedApp.getActiveXposedVersion() < InstallerFragment
-				.getJarLatestVersion()) {
+        if (installedXposedVersion < InstallerFragment
+                .getJarLatestVersion()) {
 			View notActiveNote = getActivity().getLayoutInflater().inflate(
 					R.layout.xposed_not_active_note, getListView(), false);
 			notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);

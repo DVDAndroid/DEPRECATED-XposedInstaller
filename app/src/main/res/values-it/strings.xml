@@ -48,6 +48,9 @@
     <string name="uninstall_reverted">app_process è stato disinstallato precedentemente ma la versione \"%s\" è stata trovata ora. Se non si deve ripristinare un vecchio file puoi provare ad installare via recovery (automaticamente o manualmente).</string>
     <string name="tap_to_dismiss">Tocca per chiudere</string>
     <string name="sdcard_location">Scheda SD: %s</string>
+    <string name="installation_lollipop">Xposed framework non è installato. Perfavore scarica l\'ultimo ZIP file da XDA e installalo manualmente in recovery.</string>
+    <string name="installed_lollipop">La versione di Xposed framework attiva è: %s.</string>
+    <string name="installed_lollipop_inactive">La versione di Xposed framework installata è %s, ma non è attiva. Perfavore controlla i log per dettagli.</string>
 
     <!-- File operations -->
     <string name="root_failed">Impossibile ottenere l\'accesso root.\n\nAssicurati di avere correttamente i permessi e di non aver bloccato comandi shell.</string>

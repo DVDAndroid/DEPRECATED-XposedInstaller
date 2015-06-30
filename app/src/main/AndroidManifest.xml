@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
     package="de.robv.android.xposed.installer"
-    android:versionCode="35"
-    android:versionName="3.0 alpha2 - by dvdandroid">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="37"
+    android:versionName="3.0 alpha4 - by dvdandroid">
 
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
