@@ -64,7 +64,7 @@ public class XposedApp extends Application implements
     }
 
     // This method is hooked by XposedBridge to return the current version
-    public static int getActiveXposedVersion() {
+    public static Integer getActiveXposedVersion() {
         return -1;
     }
 
